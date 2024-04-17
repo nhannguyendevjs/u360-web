@@ -1,0 +1,11 @@
+dialog {
+  border: none;
+  outline: none;
+  
+  @apply rounded;
+}
+
+dialog::backdrop {
+  background-color: gray;
+  opacity: 0.75;
+}

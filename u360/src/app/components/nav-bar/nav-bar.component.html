@@ -1,0 +1,13 @@
+<mat-toolbar color="primary" class="!h-full !w-full flex flex-row justify-between items-center !px-4">
+  <p class="text-2xl font-bold">u360</p>
+  <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon></button>
+</mat-toolbar>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item *ngIf="!currentUser()" [routerLink]="['/sign-in']">Sign in</button>
+  <ng-container *ngIf="currentUser()">
+    <button mat-menu-item>{{ currentUser().name }} | {{ currentUser().role | uppercase }}</button>
+    <button mat-menu-item [routerLink]="['/settings']">Settings</button>
+    <button mat-menu-item (click)="signOut()">Sign out</button>
+  </ng-container>
+</mat-menu>

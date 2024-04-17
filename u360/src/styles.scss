@@ -1,0 +1,50 @@
+// Animated CSS
+@import '../node_modules/animate.css/animate.min.css';
+
+// Tailwind CSS
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Material
+@import './styles/material/theme';
+
+// Common
+@import './styles/common/variables';
+@import './styles/common/scrollbar';
+
+// Keyframes
+@import './styles/keyframes/loader';
+
+// Animations
+@import './styles/animations/spinner';
+
+// Mixins
+@import './styles/mixins/loading';
+
+// Components
+@import './styles/components/nav-bar';
+@import './styles/components/nav-list';
+@import './styles/components/dialog';
+
+// u360 Components
+@import './styles/components/u360/u360-button';
+@import './styles/components/u360/u360-error-message';
+@import './styles/components/u360/u360-input';
+@import './styles/components/u360/u360-label';
+@import './styles/components/u360/u360-notification';
+@import './styles/components/u360/u360-table';
+
+// Layouts
+@import './styles/layouts/outer';
+@import './styles/layouts/inner';
+
+// Views
+@import './styles/views/shell';
+@import './styles/views/not-found';
+@import './styles/views/sign-in';
+@import './styles/views/dashboard';
+@import './styles/views/users';
+
+// App
+@import './styles/app';

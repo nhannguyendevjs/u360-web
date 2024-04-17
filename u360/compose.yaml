@@ -1,0 +1,12 @@
+version: "3"
+services:
+  u360:
+    image: u360:latest
+    ports:
+      - "80:80"
+    networks:
+      - u360-network
+    restart: always
+networks:
+  u360-network:
+    external: true

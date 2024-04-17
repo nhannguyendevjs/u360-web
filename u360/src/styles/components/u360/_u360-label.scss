@@ -1,0 +1,12 @@
+@layer components {
+  .u360-label {
+    @apply font-medium;
+
+    &.--required {
+      &::after {
+        content: ' *';
+        @apply text-red-600;
+      }
+    }
+  }
+}
