@@ -1,13 +1,13 @@
 import { environment } from '../environments/environment';
 
-const ROOT_URL = environment.apiUrl + '/api/' + environment.apiVersion;
+const USER_SERVICE_URL = environment.userServiceUrl + '/api/' + environment.userServiceVersion;
 
 export const APIs = {
   auth: {
-    signIn: ROOT_URL + '/auth/sign-in',
-    me: ROOT_URL + '/auth/me',
+    signIn: USER_SERVICE_URL + '/auth/sign-in',
+    me: USER_SERVICE_URL + '/auth/me',
   },
   users: {
-    search: ROOT_URL + '/users/search',
+    search: USER_SERVICE_URL + '/users/search',
   },
 };
