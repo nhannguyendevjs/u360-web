@@ -25,26 +25,3 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-## Initial Project
-
-```bash
-ng new u360 --standalone=true --style=scss --routing=true --skip-git=true --ssr=false
-ng add @angular/material
-ng add @angular/pwa
-ng add @ngneat/transloco
-npm i lodash luxon @ngrx/store animate.css ngx-skeleton-loader ngx-toastr uuid zod hotkeys-js
-npm i -D @types/lodash @types/luxon @types/uuid webpack-bundle-analyzer tailwindcss postcss autoprefixer tailwind-merge vitest prettier
-npx tailwindcss init
-npm init playwright@latest
-```
-
-## Docker Build
-
-```bash
-docker network create u360-network
-docker run --network u360-network --name u360-ubuntu -p 80:8080 -p 443:8443 -p 22:22 -itd ubuntu:latest
-docker build . -t u360:latest
-docker run -d -p 80:80 --network u360-network --name u360 u360:latest
-docker-compose up
-```
