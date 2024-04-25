@@ -1,6 +1,6 @@
 import { inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppStore } from '../types/store';
+import { AppStore } from '../types/store.type';
 
 export const AppSelectors = () => {
   const appStore = inject(Store) as Store<AppStore>;

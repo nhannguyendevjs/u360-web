@@ -15,7 +15,7 @@ import { OuterComponent } from './layouts/outer/outer.component';
 import { AuthService } from './services/auth.service';
 import * as UserActions from './stores/actions/user.actions';
 import { AppSelectors } from './stores/app-selector';
-import { AppStore } from './types/store';
+import { AppStore } from './types/store.type';
 
 @Component({
   selector: 'app-root',

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { APIs } from '../enums/api';
-import * as UserTypes from '../types/users';
+import * as UserTypes from '../types/users.type';
 
 @Injectable({
   providedIn: 'root',

@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, inject, viewChild } fro
 import { InfiniteScrollDirective } from '../../directives/infinite-scroll.directive';
 import { UsersColumns } from '../../enums/users';
 import { UsersService } from '../../services/users.service';
-import { User } from '../../types/users';
+import { User } from '../../types/users.type';
 import { CdkDataSource } from '../../utils/cdk/data-source';
 
 @Component({

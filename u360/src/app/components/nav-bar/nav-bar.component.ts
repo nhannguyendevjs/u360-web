@@ -10,8 +10,8 @@ import { Router, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
 import * as UserActions from '../../stores/actions/user.actions';
 import { AppSelectors } from '../../stores/app-selector';
-import * as AuthTypes from '../../types/auth';
-import { AppStore } from '../../types/store';
+import { AppStore } from '../../types/store.type';
+import * as UsersType from '../../types/users.type';
 
 const MaterialModules = [MatIconModule, MatButtonModule, MatMenuModule, MatDivider, MatToolbarModule];
 
@@ -27,7 +27,7 @@ export class NavBarComponent {
   #appStore = inject(Store) as Store<AppStore>;
   destroyRef = inject(DestroyRef);
 
-  currentUser = signal<AuthTypes.User>(null);
+  currentUser = signal<UsersType.User>(null);
 
   constructor() {
     AppSelectors()

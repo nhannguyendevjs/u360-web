@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { AppSelectors } from '../../stores/app-selector';
-import * as AuthTypes from '../../types/auth';
+import * as UsersType from '../../types/users.type';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +14,7 @@ import * as AuthTypes from '../../types/auth';
 export class HomeComponent {
   destroyRef = inject(DestroyRef);
 
-  currentUser = signal<AuthTypes.User>(null);
+  currentUser = signal<UsersType.User>(null);
 
   constructor() {
     AppSelectors()
