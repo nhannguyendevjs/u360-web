@@ -6,14 +6,16 @@ import { MatDivider } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { Router, RouterLink } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { AppNavService } from '../../services/app-nav.service';
 import * as UserActions from '../../stores/actions/user.actions';
 import { AppSelectors } from '../../stores/app-selector';
 import { AppStore } from '../../types/store.type';
 import * as UsersType from '../../types/users.type';
 
-const MaterialModules = [MatIconModule, MatButtonModule, MatMenuModule, MatDivider, MatToolbarModule];
+const MaterialModules = [MatIconModule, MatButtonModule, MatMenuModule, MatDivider, MatToolbarModule, MatTooltipModule, MatTooltipModule];
 
 @Component({
   selector: 'app-nav-bar',
@@ -25,6 +27,7 @@ const MaterialModules = [MatIconModule, MatButtonModule, MatMenuModule, MatDivid
 export class NavBarComponent {
   #router = inject(Router);
   #appStore = inject(Store) as Store<AppStore>;
+  #appNavService = inject(AppNavService);
   destroyRef = inject(DestroyRef);
 
   currentUser = signal<UsersType.User>(null);
@@ -35,6 +38,10 @@ export class NavBarComponent {
       .subscribe((user) => {
         this.currentUser.set(user);
       });
+  }
+
+  toggleMenu() {
+    this.#appNavService.toggleMenu();
   }
 
   signOut() {

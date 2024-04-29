@@ -1,6 +1,9 @@
 <mat-toolbar color="primary" class="!h-full !w-full flex flex-row justify-between items-center !px-4">
-  <mat-icon class="!text-[2rem] !w-8 !h-8">360</mat-icon>
-  <button mat-icon-button [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon></button>
+  <section class="flex flex-row items-center gap-4">
+    <button mat-icon-button matTooltip="Menu" (click)="toggleMenu()"><mat-icon>menu</mat-icon></button>
+    <mat-icon class="!text-[2rem] !w-8 !h-8">360</mat-icon>
+  </section>
+  <button mat-icon-button matTooltip="Account" [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon></button>
 </mat-toolbar>
 
 <mat-menu #menu="matMenu">

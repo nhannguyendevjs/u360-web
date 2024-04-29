@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { NavBarComponent } from '../../components/nav-bar/nav-bar.component';
 import { NavListComponent } from '../../components/nav-list/nav-list.component';
+import { AppNavService } from '../../services/app-nav.service';
 
 @Component({
   selector: 'app-outer',
@@ -10,4 +11,6 @@ import { NavListComponent } from '../../components/nav-list/nav-list.component';
   templateUrl: './outer.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OuterComponent {}
+export class OuterComponent {
+  appNavService = inject(AppNavService);
+}
