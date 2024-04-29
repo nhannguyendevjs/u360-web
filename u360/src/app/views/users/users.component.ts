@@ -83,4 +83,8 @@ export class UsersComponent {
     this.clearUsers();
     this.loadUsers();
   }
+
+  ngOnDestroy()  {
+    this.dataSource.disconnect();   
+  }
 }
