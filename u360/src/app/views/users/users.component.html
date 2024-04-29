@@ -1,16 +1,20 @@
-<div class="h-full grid grid-cols-1 grid-rows-9">
-  <section class="row-span-1 flex flex-col justify-start p-4">
-    <mat-form-field appearance="fill" class="w-full">
-      <mat-label>Search users by Name</mat-label>
-      <input matInput [formControl]="searchControl" />
+<div class="h-full grid grid-cols-1 grid-rows-8">
+  <section class="row-span-1 p-4">
+    <div class="flex flex-row justify-start gap-4">
+      <mat-form-field appearance="fill" class="w-full">
+        <mat-label>Search users by Name</mat-label>
+        <input matInput [formControl]="searchControl" />
 
-      @if (searchControl.value) {
-        <mat-icon matSuffix (click)="onClearSearch()" (keyPress)="onClearSearch()" matTooltip="Clear">clear</mat-icon>
-      }
-    </mat-form-field>
+        @if (searchControl.value) {
+          <mat-icon matSuffix (click)="onClearSearch()" (keyPress)="onClearSearch()" matTooltip="Clear">clear</mat-icon>
+        }
+      </mat-form-field>
+
+      <button mat-icon-button matTooltip="Filters"><mat-icon matBadge="0">filter_alt</mat-icon></button>
+    </div>
   </section>
 
-  <section class="row-span-8 overflow-auto" infiniteScroll (scrolled)="loadUsers()">
+  <section class="row-span-7 overflow-auto" infiniteScroll (scrolled)="loadUsers()">
     <table mat-table [dataSource]="dataSource">
       <!-- Name Column -->
       <ng-container matColumnDef="name">

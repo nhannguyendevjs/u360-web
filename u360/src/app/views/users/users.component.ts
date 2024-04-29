@@ -13,8 +13,9 @@ import { UsersColumns } from '../../enums/users';
 import { UsersService } from '../../services/users.service';
 import { User } from '../../types/users.type';
 import { CdkDataSource } from '../../utils/cdk/data-source';
+import { MatBadgeModule } from '@angular/material/badge';
 
-const MaterialModules = [MatTableModule, MatIconModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatTooltipModule];
+const MaterialModules = [MatTableModule, MatIconModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatTooltipModule, MatBadgeModule];
 
 @Component({
   selector: 'app-users',
