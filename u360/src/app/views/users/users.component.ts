@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -28,6 +28,7 @@ export class UsersComponent {
 
   displayedColumns = UsersColumns;
   dataSource = new CdkDataSource<User>();
+  isTableEmpty = signal(true);
 
   searchControl = new FormControl('');
 
@@ -36,7 +37,7 @@ export class UsersComponent {
   }
 
   ngOnInit() {
-    this.searchControl.valueChanges.pipe(debounceTime(300)).subscribe((value) => {
+    this.searchControl.valueChanges.pipe(debounceTime(300)).subscribe(() => {
       this.clearUsers();
       this.loadUsers();
     });
@@ -73,7 +74,11 @@ export class UsersComponent {
           ...res.data,
         ];
 
-        this.dataSource.data.next(users.filter((user) => user.name.toLowerCase().includes(this.searchControl.value.trim().toLowerCase())));
+        const filteredUsers = users.filter((user) => user.name.toLowerCase().includes(this.searchControl.value.trim().toLowerCase()));
+
+        this.isTableEmpty.set(filteredUsers.length === 0);
+
+        this.dataSource.data.next(filteredUsers);
       }
     });
   }
@@ -84,7 +89,7 @@ export class UsersComponent {
     this.loadUsers();
   }
 
-  ngOnDestroy()  {
-    this.dataSource.disconnect();   
+  ngOnDestroy() {
+    this.dataSource.disconnect();
   }
 }

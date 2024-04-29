@@ -31,9 +31,9 @@ export class SignInComponent {
   #router = inject(Router);
   #formBuilder = inject(FormBuilder);
 
-  errorMessage = signal<string>('');
+  errorMessage = signal('');
 
-  isShowPassword = signal<boolean>(false);
+  isShowPassword = signal(false);
 
   signInForm = this.#formBuilder.group({
     username: new FormControl('', Validators.required),
