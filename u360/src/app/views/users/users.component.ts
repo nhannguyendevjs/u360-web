@@ -38,7 +38,7 @@ export class UsersComponent {
   }
 
   ngOnInit() {
-    this.searchControl.valueChanges.pipe(debounceTime(300)).subscribe(() => {
+    this.searchControl.valueChanges.pipe(debounceTime(500)).subscribe(() => {
       this.clearUsers();
       this.loadUsers();
     });
