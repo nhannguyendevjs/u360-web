@@ -62,7 +62,7 @@ export class SignInComponent {
     if (this.signInForm.valid) {
       const { username, password } = this.signInForm.value;
 
-      this.#authService.signIn(username, password).subscribe({
+      this.#authService.signIn({ username, password }).subscribe({
         next: (res) => {
           if (res.success) {
             const { accessToken, user } = res.data;

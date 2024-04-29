@@ -16,8 +16,8 @@ export class AuthService {
     return !!accessToken;
   }
 
-  signIn(username: string, password: string) {
-    return this.#http.post<AuthType.SignInResponse>(APIs.auth.signIn, { account: { username, password } });
+  signIn(signInPayload: AuthType.SignInPayload) {
+    return this.#http.post<AuthType.SignInResponse>(APIs.auth.signIn, signInPayload);
   }
 
   me() {

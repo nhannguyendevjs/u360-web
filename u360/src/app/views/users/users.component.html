@@ -1,46 +1,49 @@
-<div class="h-full grid grid-cols-1 grid-rows-12">
-  <section class="row-span-1 flex flex-col justify-center gap-4 p-4">
-    <input class="u360-input w-full" #inputSearch type="text" id="input-search-users" name="input-search-users" placeholder="Search users by Name" (change)="onSearch($event)" />
+<div class="h-full grid grid-cols-1 grid-rows-9">
+  <section class="row-span-1 flex flex-col justify-start p-4">
+    <mat-form-field appearance="fill" class="w-full">
+      <mat-label>Search users by Name</mat-label>
+      <input matInput [formControl]="searchControl" />
 
-    @if (searchValue) {
-      <button class="fa-icon fa-solid fa-close text-2xl text-gray-600 absolute right-8" (click)="onClearSearch()"></button>
-    }
+      @if (searchControl.value) {
+        <mat-icon matSuffix (click)="onClearSearch()" (keyPress)="onClearSearch()" matTooltip="Clear">clear</mat-icon>
+      }
+    </mat-form-field>
   </section>
 
-  <section class="row-span-11 overflow-auto" infiniteScroll (scrolled)="loadUsers()">
-    <table class="u360-table" #usersTable cdk-table [dataSource]="dataSource" aria-label="User Table">
+  <section class="row-span-8 overflow-auto" infiniteScroll (scrolled)="loadUsers()">
+    <table mat-table [dataSource]="dataSource">
       <!-- Name Column -->
-      <ng-container cdkColumnDef="name">
-        <th cdk-header-cell *cdkHeaderCellDef>Name</th>
-        <td cdk-cell *cdkCellDef="let element">{{ element.name }}</td>
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
       </ng-container>
 
       <!-- Email Column -->
-      <ng-container cdkColumnDef="email">
-        <th cdk-header-cell *cdkHeaderCellDef>Email</th>
-        <td cdk-cell *cdkCellDef="let element">{{ element.email }}</td>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
       </ng-container>
 
       <!-- Phone Column -->
-      <ng-container cdkColumnDef="phone">
-        <th cdk-header-cell *cdkHeaderCellDef>Phone</th>
-        <td cdk-cell *cdkCellDef="let element">{{ element.phone }}</td>
+      <ng-container matColumnDef="phone">
+        <th mat-header-cell *matHeaderCellDef>Phone</th>
+        <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
       </ng-container>
 
       <!-- Address Column -->
-      <ng-container cdkColumnDef="address">
-        <th cdk-header-cell *cdkHeaderCellDef>Address</th>
-        <td cdk-cell *cdkCellDef="let element">{{ element.address }}</td>
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef>Address</th>
+        <td mat-cell *matCellDef="let element">{{ element.address }}</td>
       </ng-container>
 
       <!-- Role Column -->
-      <ng-container cdkColumnDef="role">
-        <th cdk-header-cell *cdkHeaderCellDef>Role</th>
-        <td cdk-cell *cdkCellDef="let element">{{ element.role | uppercase }}</td>
+      <ng-container matColumnDef="role">
+        <th mat-header-cell *matHeaderCellDef>Role</th>
+        <td mat-cell *matCellDef="let element">{{ element.role | uppercase }}</td>
       </ng-container>
 
-      <tr cdk-header-row *cdkHeaderRowDef="displayedColumns"></tr>
-      <tr cdk-row *cdkRowDef="let row; columns: displayedColumns"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </section>
 </div>

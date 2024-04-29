@@ -1,0 +1,9 @@
+.mat-mdc-table__table {
+  width: 100%;
+}
+
+.mdc-data-table__row {
+  &:hover {
+    background-color: theme('colors.gray.100');
+  }
+}

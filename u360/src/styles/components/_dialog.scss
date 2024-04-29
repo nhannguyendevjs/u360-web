@@ -6,6 +6,6 @@ dialog {
 }
 
 dialog::backdrop {
-  background-color: gray;
+  background-color: theme('colors.gray.500');
   opacity: 0.75;
 }
