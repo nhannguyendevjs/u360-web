@@ -13,9 +13,9 @@
     "build_prod": "node --max_old_space_size=10240 ./node_modules/@angular/cli/bin/ng build --base-href / --configuration production",
     "analyze_build": "ng build --stats-json",
     "analyze_report": "npm run build_stats-json & webpack-bundle-analyzer dist/fsd-fe/stats.json",
-    "vitest": "vitest",
-    "vitest-ui": "vitest --ui --coverage.enabled=true",
-    "vitest-coverage": "vitest run --coverage"
+    "unit-test": "vitest",
+    "unit-test-ui": "vitest --ui --coverage.enabled=true",
+    "unit-test-coverage": "vitest run --coverage"
   },
   "private": true,
   "dependencies": {
@@ -54,6 +54,9 @@
     "@types/luxon": "^3.4.2",
     "@types/node": "^20.11.30",
     "@types/uuid": "^9.0.8",
+    "@vitest/coverage-istanbul": "^1.6.0",
+    "@vitest/coverage-v8": "^1.6.0",
+    "@vitest/ui": "^1.6.0",
     "autoprefixer": "^10.4.19",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
@@ -66,7 +69,7 @@
     "tailwind-merge": "^2.2.2",
     "tailwindcss": "^3.4.3",
     "typescript": "~5.4.2",
-    "vitest": "^1.4.0",
+    "vitest": "^1.6.0",
     "webpack-bundle-analyzer": "^4.10.1"
   }
 }
