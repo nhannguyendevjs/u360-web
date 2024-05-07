@@ -1,10 +1,10 @@
 <mat-drawer-container class="h-full">
   <mat-drawer #userFilters mode="side" position="end">
-    <app-user-filters />
+    <app-user-filters (changed)="filtersChanged($event)" />
   </mat-drawer>
 
   <section class="h-full grid grid-cols-1 grid-rows-8">
-    <section class="row-span-1 p-4 flex flex-row justify-between items-start gap-4">
+    <section class="row-span-1 p-4 pb-0 flex flex-row justify-between items-start gap-4">
       <mat-form-field appearance="fill" class="w-full">
         <mat-label>Search users by name</mat-label>
         <input matInput [formControl]="searchControl" />
@@ -14,48 +14,50 @@
         }
       </mat-form-field>
 
-      <button mat-icon-button matTooltip="Filters" (click)="userFilters.toggle()"><mat-icon matBadge="0" aria-hidden="false">filter_alt</mat-icon></button>
+      <button mat-icon-button matTooltip="Filters" (click)="userFilters.toggle()"><mat-icon [matBadge]="filtersCounter()" aria-hidden="false">filter_alt</mat-icon></button>
     </section>
 
-    <section class="row-span-7 overflow-auto" infiniteScroll (scrolled)="loadUsers()">
-      <table mat-table [dataSource]="dataSource">
-        <!-- Name Column -->
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    <section class="row-span-7 p-4 pt-0">
+      <section class="h-full overflow-auto border rounded" infiniteScroll (scrolled)="loadUsers()">
+        <table mat-table [dataSource]="dataSource">
+          <!-- Name Column -->
+          <ng-container matColumnDef="name" sticky>
+            <th mat-header-cell *matHeaderCellDef>Name</th>
+            <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+          </ng-container>
+
+          <!-- Email Column -->
+          <ng-container matColumnDef="email">
+            <th mat-header-cell *matHeaderCellDef>Email</th>
+            <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+          </ng-container>
+
+          <!-- Phone Column -->
+          <ng-container matColumnDef="phone">
+            <th mat-header-cell *matHeaderCellDef>Phone</th>
+            <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
+          </ng-container>
+
+          <!-- Address Column -->
+          <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef>Address</th>
+            <td mat-cell *matCellDef="let element">{{ element.address }}</td>
+          </ng-container>
+
+          <!-- Role Column -->
+          <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef>Role</th>
+            <td mat-cell *matCellDef="let element">{{ element.role | uppercase }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        </table>
+
+        <ng-container *ngIf="isTableEmpty()">
+          <p class="p-4">No users found.</p>
         </ng-container>
-
-        <!-- Email Column -->
-        <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef>Email</th>
-          <td mat-cell *matCellDef="let element">{{ element.email }}</td>
-        </ng-container>
-
-        <!-- Phone Column -->
-        <ng-container matColumnDef="phone">
-          <th mat-header-cell *matHeaderCellDef>Phone</th>
-          <td mat-cell *matCellDef="let element">{{ element.phone }}</td>
-        </ng-container>
-
-        <!-- Address Column -->
-        <ng-container matColumnDef="address">
-          <th mat-header-cell *matHeaderCellDef>Address</th>
-          <td mat-cell *matCellDef="let element">{{ element.address }}</td>
-        </ng-container>
-
-        <!-- Role Column -->
-        <ng-container matColumnDef="role">
-          <th mat-header-cell *matHeaderCellDef>Role</th>
-          <td mat-cell *matCellDef="let element">{{ element.role | uppercase }}</td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-      </table>
-
-      <ng-container *ngIf="isTableEmpty()">
-        <p class="p-4">No users found.</p>
-      </ng-container>
+      </section>
     </section>
   </section>
 </mat-drawer-container>

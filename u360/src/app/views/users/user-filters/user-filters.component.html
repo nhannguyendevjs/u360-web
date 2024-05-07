@@ -2,7 +2,7 @@
   <mat-toolbar class="!h-full">
     <section class="w-full flex flex-row justify-between items-center">
       <p>Filters</p>
-      <button mat-icon-button matTooltip="Close" (click)="close()"><mat-icon>clear</mat-icon></button>
+      <button mat-icon-button matTooltip="Close" (click)="closeFilters()"><mat-icon>clear</mat-icon></button>
     </section>
   </mat-toolbar>
 
@@ -24,7 +24,7 @@
   </section>
 
   <section class="px-4 pb-4 flex flex-row gap-4 items-end justify-end">
-    <button mat-flat-button color="primary">Apply</button>
-    <button mat-flat-button>Reset</button>
+    <button mat-flat-button color="primary" (click)="applyFilters()">Apply</button>
+    <button mat-flat-button (click)="resetFilters()">Reset</button>
   </section>
 </section>

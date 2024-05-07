@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, output } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -22,11 +22,24 @@ const MaterialModules = [MatToolbarModule, MatSelectModule, MatIconModule, MatIn
 export class UserFiltersComponent {
   #usersLayoutService = inject(UsersLayoutService);
 
+  changed = output<{ roles: string[] }>();
+
   readonly userRoles = ['Admin', 'Member'];
 
-  selectedRoles = new FormControl('');
+  selectedRoles = new FormControl([], { nonNullable: true });
 
-  close() {
+  closeFilters() {
     this.#usersLayoutService.userFilters().toggle();
+  }
+
+  applyFilters() {
+    this.changed.emit({
+      roles: this.selectedRoles.value,
+    });
+  }
+
+  resetFilters() {
+    this.selectedRoles.reset();
+    this.applyFilters();
   }
 }

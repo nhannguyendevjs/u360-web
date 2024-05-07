@@ -40,6 +40,9 @@ export class UsersComponent {
 
   searchControl = new FormControl('');
 
+  filters = signal({ roles: [] });
+  filtersCounter = signal(0);
+
   constructor() {
     this.loadUsers();
   }
@@ -99,6 +102,11 @@ export class UsersComponent {
     this.searchControl.setValue('');
     this.clearUsers();
     this.loadUsers();
+  }
+
+  filtersChanged(event: { roles: string[] }) {
+    this.filters.set(event);
+    this.filtersCounter.set(event.roles.length > 0 ? 1 : 0);
   }
 
   ngOnDestroy() {
