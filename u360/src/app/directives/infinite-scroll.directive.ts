@@ -2,9 +2,9 @@ import { Directive, EventEmitter, HostListener, Input, Output } from '@angular/c
 
 /**
  * @example
-  <div class="scrollable-content" infiniteScroll (scrolled)="loadMoreData()">
+  <section class="scrollable-content" infiniteScroll (scrolled)="loadMoreData()">
     <!-- Your list of items -->
-  </div>
+  </section>
  */
 @Directive({
   selector: '[infiniteScroll]',

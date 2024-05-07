@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { UsersLayoutService } from '../../../services/users-layout.service';
 
 const MaterialModules = [MatToolbarModule, MatSelectModule, MatIconModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatTooltipModule];
 
@@ -19,7 +20,13 @@ const MaterialModules = [MatToolbarModule, MatSelectModule, MatIconModule, MatIn
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserFiltersComponent {
+  #usersLayoutService = inject(UsersLayoutService);
+
   readonly userRoles = ['Admin', 'Member'];
 
   selectedRoles = new FormControl('');
+
+  close() {
+    this.#usersLayoutService.userFilters().toggle();
+  }
 }

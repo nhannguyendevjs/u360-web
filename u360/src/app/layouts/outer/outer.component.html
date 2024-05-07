@@ -1,13 +1,13 @@
-<div class="w-full h-dvh grid grid-cols-12">
-  <div class="col-span-full h-[4rem]">
+<section class="w-full h-dvh grid grid-cols-12">
+  <header class="col-span-full h-[4rem]">
     <app-nav-bar />
-  </div>
+  </header>
 
-  <div class="col-span-4 lg:col-span-2 h-[calc(100dvh-4rem)]" [ngClass]="{ '!hidden': !appNavService.isShowNavList() }">
+  <aside class="col-span-4 lg:col-span-2 h-[calc(100dvh-4rem)]" [ngClass]="{ '!hidden': !appNavService.isShowNavList() }">
     <app-nav-list />
-  </div>
+  </aside>
 
-  <div class="col-span-8 lg:col-span-10 h-[calc(100dvh-4rem)]" [ngClass]="{ '!col-span-full': !appNavService.isShowNavList() }">
+  <main class="col-span-8 lg:col-span-10 h-[calc(100dvh-4rem)]" [ngClass]="{ '!col-span-full': !appNavService.isShowNavList() }">
     <ng-content />
-  </div>
-</div>
+  </main>
+</section>

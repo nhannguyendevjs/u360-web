@@ -1,5 +1,5 @@
-<div class="w-dvw h-dvh flex items-center justify-center">
-  <mat-card class="h-fit flex flex-col gap-4 w-10/12 sm:w-8/12 md:w-6/12 lg:w-4/12 2xl:w-3/12">
+<section class="w-dvw h-dvh flex items-center justify-center">
+  <mat-card class="p-4 flex flex-col gap-4 w-10/12 sm:w-8/12 md:w-6/12 lg:w-4/12 2xl:w-3/12">
     <mat-card-header class="justify-center">
       <mat-card-title>Sign In</mat-card-title>
     </mat-card-header>
@@ -7,10 +7,8 @@
     <mat-card-content>
       <form [formGroup]="signInForm" class="flex flex-col gap-4">
         <section *ngIf="errorMessage()" class="flex flex-row items-center gap-4 text-red-600">
-          <div>
-            <mat-icon>error</mat-icon>
-          </div>
-          <div>{{ errorMessage() }}</div>
+          <mat-icon>error</mat-icon>
+          <p>{{ errorMessage() }}</p>
         </section>
 
         <mat-form-field class="w-full">
@@ -41,11 +39,11 @@
 
     <mat-card-actions class="justify-center">
       <button mat-flat-button color="primary" (click)="signIn()" class="w-full">
-        <div class="flex flex-row items-center justify-center gap-1">
-          <div>Sign in</div>
+        <section class="flex flex-row items-center justify-center gap-1">
+          <p>Sign in</p>
           <mat-icon>login</mat-icon>
-        </div>
+        </section>
       </button>
     </mat-card-actions>
   </mat-card>
-</div>
+</section>

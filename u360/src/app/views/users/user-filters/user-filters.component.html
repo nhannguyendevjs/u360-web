@@ -1,8 +1,8 @@
-<div class="h-full grid grid-rows-12 gap-4">
+<section class="min-w-80 h-full grid grid-rows-12 gap-4">
   <mat-toolbar class="!h-full">
     <section class="w-full flex flex-row justify-between items-center">
       <p>Filters</p>
-      <button mat-icon-button matTooltip="Close"><mat-icon>clear</mat-icon></button>
+      <button mat-icon-button matTooltip="Close" (click)="close()"><mat-icon>clear</mat-icon></button>
     </section>
   </mat-toolbar>
 
@@ -27,4 +27,4 @@
     <button mat-flat-button color="primary">Apply</button>
     <button mat-flat-button>Reset</button>
   </section>
-</div>
+</section>

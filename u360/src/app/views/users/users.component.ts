@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, inject, signal, viewChild } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { debounceTime } from 'rxjs';
@@ -16,6 +16,7 @@ import { UsersService } from '../../services/users.service';
 import { User } from '../../types/users.type';
 import { CdkDataSource } from '../../utils/cdk/data-source';
 import { UserFiltersComponent } from './user-filters/user-filters.component';
+import { UsersLayoutService } from '../../services/users-layout.service';
 
 const MaterialModules = [MatSidenavModule, MatTableModule, MatIconModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatTooltipModule, MatBadgeModule];
 
@@ -28,6 +29,9 @@ const MaterialModules = [MatSidenavModule, MatTableModule, MatIconModule, MatInp
 })
 export class UsersComponent {
   #usersService = inject(UsersService);
+  #usersLayoutService = inject(UsersLayoutService);
+
+  userFilters = viewChild.required(MatDrawer);
 
   displayedColumns = UsersColumns;
   dataSource = new CdkDataSource<User>();
@@ -45,6 +49,10 @@ export class UsersComponent {
       this.clearUsers();
       this.loadUsers();
     });
+  }
+
+  ngAfterViewInit() {
+    this.#usersLayoutService.userFilters = this.userFilters;
   }
 
   clearUsers() {
