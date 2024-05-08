@@ -8,7 +8,7 @@
       <form [formGroup]="signInForm" class="flex flex-col gap-4">
         <section *ngIf="errorMessage()" class="flex flex-row items-center gap-4 text-red-600">
           <mat-icon>error</mat-icon>
-          <p>{{ errorMessage() }}</p>
+          <p id="error-message">{{ errorMessage() }}</p>
         </section>
 
         <mat-form-field class="w-full">
