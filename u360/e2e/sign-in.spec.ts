@@ -24,6 +24,6 @@ test('Sign in unsuccessful', async ({ page }) => {
   await page.fill('#username', 'admin');
   await page.fill('#password', '123456');
   await page.click('#sign-in-button');
-  await page.waitForSelector('#error-message');
+  await page.locator('#error-message').waitFor();
   await expect(page.locator('#error-message')).toHaveText('Invalid username or password.');
 });
