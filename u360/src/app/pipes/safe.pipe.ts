@@ -1,6 +1,10 @@
 import { Pipe, PipeTransform, inject } from '@angular/core';
 import { DomSanitizer, SafeHtml, SafeStyle, SafeScript, SafeUrl, SafeResourceUrl } from '@angular/platform-browser';
 
+/**
+ * @example
+ * <div [innerHtml]="html | safe: 'html'"></div>
+ */
 @Pipe({
   name: 'safe',
   standalone: true,
