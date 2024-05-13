@@ -32,30 +32,33 @@ export const routes: Routes = [
     children: [
       {
         path: 'settings',
-        loadChildren: () => import('./views/settings/settings.routes').then((m) => m.routes),
-        canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./views/settings/settings.routes').then((m) => m.routes),
+          },
+        ],
       },
       {
         path: 'users',
-        loadChildren: () => import('./views/users/users.routes').then((m) => m.routes),
-        canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./views/users/users.routes').then((m) => m.routes),
+          },
+        ],
       },
       {
         path: 'home',
-        loadChildren: () => import('./views/home/home.routes').then((m) => m.routes),
-        canActivate: [authGuard],
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./views/home/home.routes').then((m) => m.routes),
+          },
+        ],
       },
     ],
   },
-  //////////////////////////////////////////
-  // Child Auth Routes
-  //////////////////////////////////////////
-  // {
-  //   path: '',
-  //   canActivateChild: [authGuard],
-  //   children: [
-  //   ]
-  // },
   //////////////////////////////////////////
   // Not Found Route
   //////////////////////////////////////////
