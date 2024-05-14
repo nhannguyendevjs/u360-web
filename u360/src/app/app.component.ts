@@ -10,8 +10,6 @@ import { timer } from 'rxjs';
 import { HotkeysDialogComponent } from './components/hotkeys-dialog/hotkeys-dialog.component';
 import { LocalStorageKeys } from './enums/local-storage';
 import { environment } from './environments/environment';
-import { InnerComponent } from './layouts/inner/inner.component';
-import { OuterComponent } from './layouts/outer/outer.component';
 import { AuthService } from './services/auth.service';
 import * as UserActions from './stores/actions/user.actions';
 import { AppSelectors } from './stores/app-selector';
@@ -20,7 +18,7 @@ import { AppStore } from './types/store.type';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, OuterComponent, InnerComponent, HotkeysDialogComponent],
+  imports: [CommonModule, RouterOutlet, HotkeysDialogComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {

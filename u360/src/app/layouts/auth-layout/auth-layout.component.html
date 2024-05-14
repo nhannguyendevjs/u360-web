@@ -8,6 +8,8 @@
   </aside>
 
   <main class="col-span-8 lg:col-span-10 h-[calc(100dvh-4rem)]" [ngClass]="{ '!col-span-full': !appNavService.isShowNavList() }">
-    <ng-content />
+    <section class="h-full w-full">
+      <router-outlet></router-outlet>
+    </section>
   </main>
 </section>

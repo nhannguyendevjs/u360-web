@@ -1,11 +1,3 @@
-@if (isSignedIn()) {
-  <app-outer>
-    <app-inner>
-      <router-outlet />
-    </app-inner>
-  </app-outer>
+<router-outlet />
 
-  <app-hotkeys-dialog #hotkeysDialog />
-} @else {
-  <router-outlet />
-}
+<app-hotkeys-dialog #hotkeysDialog />
