@@ -1,6 +1,6 @@
 import { provideImageKitLoader } from '@angular/common';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { ApplicationConfig, importProvidersFrom, isDevMode } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, isDevMode, provideExperimentalZonelessChangeDetection } from '@angular/core';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, withComponentInputBinding, withViewTransitions } from '@angular/router';
 import { provideServiceWorker } from '@angular/service-worker';
@@ -15,6 +15,7 @@ import { TranslocoHttpLoader } from './transloco-loader';
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
+    provideExperimentalZonelessChangeDetection(),
     provideHttpClient(withInterceptors([AuthorizationInterceptor, AuthInterceptor])),
     provideRouter(routes, withComponentInputBinding(), withViewTransitions()),
     provideServiceWorker('ngsw-worker.js', {
