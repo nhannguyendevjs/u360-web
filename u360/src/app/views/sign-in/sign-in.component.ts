@@ -9,12 +9,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { LocalStorageKeys } from '../../enums/local-storage';
 import { ShellActions } from '../../enums/shell';
+import { AppStoreService } from '../../services/app-store.service';
 import { AuthService } from '../../services/auth.service';
-import * as UserActions from '../../stores/actions/user.actions';
-import { AppStore } from '../../types/store.type';
 
 const MaterialModules = [MatCardModule, MatIconModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatProgressBarModule, MatCheckboxModule];
 
@@ -27,7 +25,7 @@ const MaterialModules = [MatCardModule, MatIconModule, MatInputModule, MatFormFi
 })
 export class SignInComponent {
   #authService = inject(AuthService);
-  #appStore = inject(Store) as Store<AppStore>;
+  #appStoreService = inject(AppStoreService);
   #router = inject(Router);
   #formBuilder = inject(FormBuilder);
 
@@ -67,7 +65,7 @@ export class SignInComponent {
           if (res.success) {
             const { accessToken, user } = res.data;
             localStorage.setItem(LocalStorageKeys.authorization, accessToken);
-            this.#appStore.dispatch(UserActions.setUser(user));
+            this.#appStoreService.me.set(user);
             this.#router.navigate(['/'], { queryParams: { action: ShellActions.signIn } });
           }
         },

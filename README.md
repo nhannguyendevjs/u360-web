@@ -24,7 +24,7 @@ Released under the [MIT License](LICENSE).
 ng new u360 --standalone=true --style=scss --routing=true --skip-git=true --ssr=false
 ng add @angular/material
 ng add @angular/pwa
-ng add @ngneat/transloco
+ng add @jsverse/transloco
 npm i lodash luxon @ngrx/store animate.css ngx-skeleton-loader ngx-toastr uuid zod hotkeys-js
 npm i -D @types/lodash @types/luxon @types/uuid webpack-bundle-analyzer tailwindcss postcss autoprefixer tailwind-merge vitest prettier
 npx tailwindcss init

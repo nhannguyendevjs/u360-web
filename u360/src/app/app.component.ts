@@ -1,19 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject, signal, viewChild } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SwUpdate } from '@angular/service-worker';
-import { TranslocoService } from '@ngneat/transloco';
-import { Store } from '@ngrx/store';
+import { TranslocoService } from '@jsverse/transloco';
 import hotkeys from 'hotkeys-js';
 import { timer } from 'rxjs';
 import { HotkeysDialogComponent } from './components/hotkeys-dialog/hotkeys-dialog.component';
 import { LocalStorageKeys } from './enums/local-storage';
 import { environment } from './environments/environment';
+import { AppStoreService } from './services/app-store.service';
 import { AuthService } from './services/auth.service';
-import * as UserActions from './stores/actions/user.actions';
-import { AppSelectors } from './stores/app-selector';
-import { AppStore } from './types/store.type';
 
 @Component({
   selector: 'app-root',
@@ -25,9 +22,9 @@ export class AppComponent {
   #swUpdate = inject(SwUpdate);
   #translocoService = inject(TranslocoService);
   #router = inject(Router);
-  #authService = inject(AuthService);
-  #appStore = inject(Store) as Store<AppStore>;
   #destroyRef = inject(DestroyRef);
+  #authService = inject(AuthService);
+  #appStoreService = inject(AppStoreService);
 
   isSignedIn = signal(this.#authService.isSignedIn());
 
@@ -43,8 +40,8 @@ export class AppComponent {
   }
 
   #registerStoreUser() {
-    AppSelectors()
-      .user.pipe(takeUntilDestroyed(this.#destroyRef))
+    toObservable(this.#appStoreService.me)
+      .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe((user) => {
         this.isSignedIn.set(!!user);
       });
@@ -55,7 +52,7 @@ export class AppComponent {
       this.#authService.me().subscribe((res) => {
         if (res.success) {
           const user = res.data;
-          this.#appStore.dispatch(UserActions.setUser(user));
+          this.#appStoreService.me.set(user);
         }
       });
     }
@@ -76,7 +73,7 @@ export class AppComponent {
   #registerServiceWorkerUpgrade() {
     if (this.#swUpdate.isEnabled) {
       timer(0, 60000)
-        .pipe(takeUntilDestroyed())
+        .pipe(takeUntilDestroyed(this.#destroyRef))
         .subscribe(() => {
           this.#swUpdate.checkForUpdate().then((res) => {
             if (res) {

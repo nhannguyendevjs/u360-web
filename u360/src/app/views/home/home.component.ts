@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, DestroyRef, inject, signal } from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { AppSelectors } from '../../stores/app-selector';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { AppStoreService } from '../../services/app-store.service';
 import * as UsersType from '../../types/users.type';
 
 @Component({
@@ -12,13 +12,14 @@ import * as UsersType from '../../types/users.type';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
-  destroyRef = inject(DestroyRef);
+  #appStoreService = inject(AppStoreService);
+  #destroyRef = inject(DestroyRef);
 
   currentUser = signal<UsersType.User>(null);
 
   constructor() {
-    AppSelectors()
-      .user.pipe(takeUntilDestroyed())
+    toObservable(this.#appStoreService.me)
+      .pipe(takeUntilDestroyed(this.#destroyRef))
       .subscribe((user) => {
         this.currentUser.set(user);
       });
