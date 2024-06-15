@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, ElementRef, inject, signal, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, viewChild } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
@@ -9,21 +9,21 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { OverlayscrollbarsModule } from 'overlayscrollbars-ngx';
 import { debounceTime } from 'rxjs';
-import { InfiniteScrollDirective } from '../../directives/infinite-scroll.directive';
 import { UsersColumns } from '../../enums/users';
+import { UsersLayoutService } from '../../services/users-layout.service';
 import { UsersService } from '../../services/users.service';
 import { User } from '../../types/users.type';
 import { CdkDataSource } from '../../utils/cdk/data-source';
 import { UserFiltersComponent } from './user-filters/user-filters.component';
-import { UsersLayoutService } from '../../services/users-layout.service';
 
 const MaterialModules = [MatSidenavModule, MatTableModule, MatIconModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatTooltipModule, MatBadgeModule];
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ...MaterialModules, InfiniteScrollDirective, UserFiltersComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ...MaterialModules, UserFiltersComponent, OverlayscrollbarsModule],
   templateUrl: './users.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -107,6 +107,17 @@ export class UsersComponent {
   filtersChanged(event: { roles: string[] }) {
     this.filters.set(event);
     this.filtersCounter.set(event.roles.length > 0 ? 1 : 0);
+  }
+
+  onScroll(ev: any) {
+    const event = ev[1] as Event;
+    const element = event.target as HTMLElement;
+    const atBottom = element.scrollHeight - element.scrollTop <= element.clientHeight;
+
+    if (atBottom) {
+      console.log('At bottom');
+      this.loadUsers();
+    }
   }
 
   ngOnDestroy() {

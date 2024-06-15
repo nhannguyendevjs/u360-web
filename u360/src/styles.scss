@@ -1,5 +1,6 @@
-// Animated CSS
+// Vendors CSS
 @import '../node_modules/animate.css/animate.min.css';
+@import '../node_modules/overlayscrollbars/styles/overlayscrollbars.min.css';
 
 // Tailwind CSS
 @tailwind base;
@@ -13,7 +14,6 @@
 
 // Common
 @import './styles/common/variables';
-@import './styles/common/scrollbar';
 
 // Keyframes
 @import './styles/keyframes/loader';

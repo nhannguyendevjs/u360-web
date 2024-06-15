@@ -3,8 +3,8 @@
     <app-user-filters (changed)="filtersChanged($event)" />
   </mat-drawer>
 
-  <section class="h-full grid grid-cols-1 grid-rows-8">
-    <section class="row-span-1 p-4 pb-0 flex flex-row justify-between items-start gap-4">
+  <section class="h-full grid grid-cols-1 grid-rows-10">
+    <section class="row-span-1 px-4 flex flex-row justify-between items-start gap-4">
       <mat-form-field appearance="fill" class="w-full">
         <mat-label>Search users by name</mat-label>
         <input matInput [formControl]="searchControl" />
@@ -17,8 +17,8 @@
       <button mat-icon-button matTooltip="Filters" (click)="userFilters.toggle()"><mat-icon [matBadge]="filtersCounter()" aria-hidden="false">filter_alt</mat-icon></button>
     </section>
 
-    <section class="row-span-7 p-4 pt-0">
-      <section class="h-full overflow-auto border rounded" infiniteScroll (scrolled)="loadUsers()">
+    <section class="row-span-9 p-4 pt-0">
+      <section class="h-full overflow-auto border rounded" overlay-scrollbars (osScroll)="onScroll($event)">
         <table mat-table [dataSource]="dataSource">
           <!-- Name Column -->
           <ng-container matColumnDef="name" sticky>

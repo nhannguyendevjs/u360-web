@@ -5,6 +5,7 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SwUpdate } from '@angular/service-worker';
 import { TranslocoService } from '@jsverse/transloco';
 import hotkeys from 'hotkeys-js';
+import { OverlayscrollbarsModule } from 'overlayscrollbars-ngx';
 import { timer } from 'rxjs';
 import { HotkeysDialogComponent } from './components/hotkeys-dialog/hotkeys-dialog.component';
 import { LocalStorageKeys } from './enums/local-storage';
@@ -15,7 +16,7 @@ import { AuthService } from './services/auth.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HotkeysDialogComponent],
+  imports: [CommonModule, RouterOutlet, HotkeysDialogComponent, OverlayscrollbarsModule],
   templateUrl: './app.component.html',
 })
 export class AppComponent {

@@ -25,7 +25,7 @@ ng new u360 --standalone=true --style=scss --routing=true --skip-git=true --ssr=
 ng add @angular/material
 ng add @angular/pwa
 ng add @jsverse/transloco
-npm i lodash luxon @ngrx/store animate.css ngx-skeleton-loader ngx-toastr uuid zod hotkeys-js
+npm i lodash luxon @ngrx/store animate.css ngx-skeleton-loader ngx-toastr uuid zod hotkeys-js overlayscrollbars overlayscrollbars-ngx
 npm i -D @types/lodash @types/luxon @types/uuid webpack-bundle-analyzer tailwindcss postcss autoprefixer tailwind-merge vitest prettier
 npx tailwindcss init
 npm init playwright@latest
