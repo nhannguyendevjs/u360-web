@@ -17,6 +17,7 @@ import { UsersService } from '../../services/users.service';
 import { User } from '../../types/users.type';
 import { CdkDataSource } from '../../utils/cdk/data-source';
 import { UserFiltersComponent } from './user-filters/user-filters.component';
+import { isScrollAtBottom } from '../../utils/common/common';
 
 const MaterialModules = [MatSidenavModule, MatTableModule, MatIconModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatTooltipModule, MatBadgeModule];
 
@@ -111,11 +112,9 @@ export class UsersComponent {
 
   onScroll(ev: any) {
     const event = ev[1] as Event;
-    const element = event.target as HTMLElement;
-    const atBottom = element.scrollHeight - element.scrollTop <= element.clientHeight;
+    const isAtBottom = isScrollAtBottom(event);
 
-    if (atBottom) {
-      console.log('At bottom');
+    if (isAtBottom) {
       this.loadUsers();
     }
   }
