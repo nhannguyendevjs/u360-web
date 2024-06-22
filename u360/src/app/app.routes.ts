@@ -3,9 +3,9 @@ import { authChildGuard } from './guards/auth-child.guard';
 import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-  //////////////////////////////////////////
+  // ----------------------------------------------------------------
   // No auth routes
-  //////////////////////////////////////////
+  // ----------------------------------------------------------------
   {
     path: '',
     loadComponent: () => import('./layouts/guest-layout/guest-layout.component').then((c) => c.GuestLayoutComponent),
@@ -27,9 +27,9 @@ export const routes: Routes = [
       },
     ],
   },
-  //////////////////////////////////////////
+  // ----------------------------------------------------------------
   // Auth routes
-  //////////////////////////////////////////
+  // ----------------------------------------------------------------
   {
     path: '',
     loadComponent: () => import('./layouts/auth-layout/auth-layout.component').then((c) => c.AuthLayoutComponent),
@@ -70,9 +70,9 @@ export const routes: Routes = [
       },
     ],
   },
-  //////////////////////////////////////////
+  // ----------------------------------------------------------------
   // Not found route
-  //////////////////////////////////////////
+  // ----------------------------------------------------------------
   {
     path: '**',
     title: 'Not found',
