@@ -4,7 +4,7 @@ u360 Web
 
 ## Author
 
-**Nhan Nguyen**
+Nhan Nguyen
 
 * [github/nhannguyendevjs](https://github.com/nhannguyendevjs)
 * [twitter/nhannguyendevjs](https://twitter.com/nhannguyendevjs)
