@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, output } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,7 +17,6 @@ const MaterialModules = [MatToolbarModule, MatSelectModule, MatIconModule, MatIn
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, ...MaterialModules],
   templateUrl: './user-filters.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserFiltersComponent {
   #usersLayoutService = inject(UsersLayoutService);

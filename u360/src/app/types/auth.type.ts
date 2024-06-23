@@ -1,4 +1,4 @@
-import * as UsersType from './users.type';
+import * as UserTypes from './users.type';
 
 export type SignInPayload= {
   username: string;
@@ -9,11 +9,11 @@ export type SignInResponse = {
   success: boolean;
   data: {
     accessToken: string;
-    user: UsersType.User;
+    user: UserTypes.User;
   };
 };
 
 export type MeResponse = {
   success: boolean;
-  data: UsersType.User;
+  data: UserTypes.User;
 };

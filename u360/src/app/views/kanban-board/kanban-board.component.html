@@ -1,0 +1,60 @@
+<!-- Board > Toolbar -->
+<div class="flex justify-between items-center">
+  <section class="flex flex-row gap-2 items-center">
+    <mat-icon>task_alt</mat-icon>
+    <p class="text-2xl font-bold">{{ board.title }}</p>
+  </section>
+  <input type="text" placeholder="Search tasks" class="border rounded px-4 py-2 min-w-[200px]" name="searchKeyword" [formControl]="searchControl" />
+</div>
+
+<div cdkDropListGroup class="h-full grid grid-cols-3 gap-4 overflow-auto">
+  @for (column of board.columns(); track column.name) {
+    <!-- Column -->
+    <section class="overflow-auto flex flex-col gap-4">
+      <!-- Column > Header -->
+      @if (column.name === 'todo') {
+        <section class="flex flex-row items-center justify-between gap-2 border-t-8 rounded-t-md border-gray-600 p-2">
+          <p class="text-lg font-semibold text-gray-600">To do - {{ column.tasks().length }} item(s)</p>
+          <mat-icon class="cursor-pointer" matTooltip="Add task">add_task</mat-icon>
+        </section>
+      }
+
+      @if (column.name === 'inprogress') {
+        <section class="flex flex-row items-center justify-between gap-2 border-t-8 rounded-t-md border-blue-600 p-2">
+          <p class="text-lg font-semibold text-blue-600">In progress - {{ column.tasks().length }} item(s)</p>
+        </section>
+      }
+
+      @if (column.name === 'done') {
+        <section class="flex flex-row items-center justify-between gap-2 border-t-8 rounded-t-md border-green-600 p-2">
+          <p class="text-lg font-semibold text-green-600">Done - {{ column.tasks().length }} item(s)</p>
+        </section>
+      }
+      <!-- Column > Tasks -->
+      <section class="h-full overflow-auto flex flex-col gap-4 p-2" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
+        @for (task of column.tasks(); track task._id) {
+          <mat-card @fadeIn cdkDrag>
+            <!-- Task > Toolbar -->
+            <mat-card-header class="flex flex-row items-center justify-between mb-4">
+              <mat-card-title>
+                <span class="text-[1.2rem] font-semibold">{{ task.title }}</span>
+              </mat-card-title>
+              <mat-icon class="cursor-pointer" matTooltip="More actions">more_vert</mat-icon>
+            </mat-card-header>
+            <!-- Task > Content -->
+            <mat-card-content>
+              <p class="pb-2">{{ task.description }}</p>
+            </mat-card-content>
+            <!-- Task > Actions -->
+            <mat-card-actions>
+              <section class="flex flex-row items-center gap-2">
+                <img class="w-4 h-4 rounded-[50%]" [src]="task.assignee.avatar" alt="" srcset="" />
+                <p class="text-sm">{{ task.assignee.name }}</p>
+              </section>
+            </mat-card-actions>
+          </mat-card>
+        }
+      </section>
+    </section>
+  }
+</div>

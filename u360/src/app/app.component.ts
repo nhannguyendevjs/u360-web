@@ -1,14 +1,12 @@
-import { CommonModule } from '@angular/common';
 import { Component, DestroyRef, inject, signal, viewChild } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SwUpdate } from '@angular/service-worker';
 import { TranslocoService } from '@jsverse/transloco';
 import hotkeys from 'hotkeys-js';
-import { OverlayscrollbarsModule } from 'overlayscrollbars-ngx';
 import { timer } from 'rxjs';
 import { HotkeysDialogComponent } from './components/hotkeys-dialog/hotkeys-dialog.component';
-import { LocalStorageKeys } from './enums/local-storage';
+import { LocalStorageKeys } from './enums/local-storage.enum';
 import { environment } from './environments/environment';
 import { AppStoreService } from './services/app-store.service';
 import { AuthService } from './services/auth.service';
@@ -16,7 +14,7 @@ import { AuthService } from './services/auth.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HotkeysDialogComponent, OverlayscrollbarsModule],
+  imports: [RouterOutlet, HotkeysDialogComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {

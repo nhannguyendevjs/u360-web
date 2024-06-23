@@ -3,4 +3,3 @@ module.exports = {
   langs: ['en', 'vi'],
   keysManager: {},
 };
-public

@@ -1,11 +1,9 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './settings.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsComponent {}

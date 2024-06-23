@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostListener, inject, signal } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { Component, HostListener, inject, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -9,8 +9,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Router } from '@angular/router';
-import { LocalStorageKeys } from '../../enums/local-storage';
-import { ShellActions } from '../../enums/shell';
+import { LocalStorageKeys } from '../../enums/local-storage.enum';
+import { ShellActions } from '../../enums/shell.enum';
 import { AppStoreService } from '../../services/app-store.service';
 import { AuthService } from '../../services/auth.service';
 
@@ -19,9 +19,8 @@ const MaterialModules = [MatCardModule, MatIconModule, MatInputModule, MatFormFi
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ...MaterialModules],
+  imports: [FormsModule, ReactiveFormsModule, NgIf, ...MaterialModules],
   templateUrl: './sign-in.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SignInComponent {
   #authService = inject(AuthService);

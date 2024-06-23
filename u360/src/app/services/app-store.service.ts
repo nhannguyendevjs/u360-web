@@ -1,9 +1,9 @@
 import { Injectable, signal } from '@angular/core';
-import * as UsersType from '../types/users.type';
+import * as UserTypes from '../types/users.type';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AppStoreService {
-  me = signal<UsersType.User | null>(null);
+  me = signal<UserTypes.User | null>(null);
 }

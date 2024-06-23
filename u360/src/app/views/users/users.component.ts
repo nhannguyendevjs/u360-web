@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, signal, viewChild } from '@angular/core';
+import { Component, inject, signal, viewChild } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
@@ -11,13 +11,13 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { OverlayscrollbarsModule } from 'overlayscrollbars-ngx';
 import { debounceTime } from 'rxjs';
-import { UsersColumns } from '../../enums/users';
+import { UsersColumns } from '../../enums/users.enum';
 import { UsersLayoutService } from '../../services/users-layout.service';
 import { UsersService } from '../../services/users.service';
 import { User } from '../../types/users.type';
 import { CdkDataSource } from '../../utils/cdk/data-source';
-import { UserFiltersComponent } from './user-filters/user-filters.component';
 import { isScrollAtBottom } from '../../utils/common/common';
+import { UserFiltersComponent } from './user-filters/user-filters.component';
 
 const MaterialModules = [MatSidenavModule, MatTableModule, MatIconModule, MatInputModule, MatFormFieldModule, MatButtonModule, MatTooltipModule, MatBadgeModule];
 
@@ -26,7 +26,6 @@ const MaterialModules = [MatSidenavModule, MatTableModule, MatIconModule, MatInp
   standalone: true,
   imports: [CommonModule, FormsModule, ReactiveFormsModule, ...MaterialModules, UserFiltersComponent, OverlayscrollbarsModule],
   templateUrl: './users.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersComponent {
   #usersService = inject(UsersService);

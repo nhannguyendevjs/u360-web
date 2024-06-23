@@ -21,11 +21,11 @@ Released under the [MIT License](LICENSE).
 ## Initial Project
 
 ```bash
-ng new u360 --standalone=true --style=scss --routing=true --skip-git=true --ssr=false
+ng new u360 --standalone=true --style=scss --routing=true --skip-git=true --skip-tests=true --ssr=false
 ng add @angular/material
 ng add @angular/pwa
 ng add @jsverse/transloco
-npm i lodash luxon @ngrx/store animate.css ngx-skeleton-loader ngx-toastr uuid zod hotkeys-js overlayscrollbars overlayscrollbars-ngx
+npm i lodash luxon @ngrx/store animate.css ngx-skeleton-loader ngx-toastr uuid zod hotkeys-js apexcharts ng-apexcharts overlayscrollbars overlayscrollbars-ngx simplebar simplebar-angular
 npm i -D @types/lodash @types/luxon @types/uuid webpack-bundle-analyzer tailwindcss postcss autoprefixer tailwind-merge vitest prettier
 npx tailwindcss init
 npm init playwright@latest

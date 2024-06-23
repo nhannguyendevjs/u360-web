@@ -1,20 +1,23 @@
-import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { OverlayscrollbarsModule } from 'overlayscrollbars-ngx';
+import { NgForOf } from '@angular/common';
+import { Component, signal } from '@angular/core';
+import { RouterLink, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-nav-list',
   standalone: true,
-  imports: [CommonModule, RouterModule, OverlayscrollbarsModule],
+  imports: [RouterModule, RouterLink, NgForOf],
   templateUrl: './nav-list.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavListComponent {
-  readonly navItems = [
+  readonly navItems = signal([
     {
       label: 'Home',
       path: '/home',
+      selected: true,
+    },
+    {
+      label: 'Dashboard',
+      path: '/dashboard',
       selected: true,
     },
     {
@@ -23,9 +26,14 @@ export class NavListComponent {
       selected: false,
     },
     {
+      label: 'Kanban board',
+      path: '/kanban-board',
+      selected: false,
+    },
+    {
       label: 'Settings',
       path: '/settings',
       selected: false,
     },
-  ];
+  ]);
 }

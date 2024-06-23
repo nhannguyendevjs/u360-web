@@ -37,9 +37,14 @@ export const routes: Routes = [
     canActivateChild: [authChildGuard],
     children: [
       {
-        path: 'settings',
-        title: 'Settings',
-        loadComponent: () => import('./views/settings/settings.component').then((c) => c.SettingsComponent),
+        path: 'home',
+        title: 'Home',
+        loadComponent: () => import('./views/home/home.component').then((c) => c.HomeComponent),
+      },
+      {
+        path: 'dashboard',
+        title: 'Dashboard',
+        loadComponent: () => import('./views/dashboard/dashboard.component').then((c) => c.DashboardComponent),
       },
       {
         path: 'users',
@@ -64,9 +69,14 @@ export const routes: Routes = [
         ],
       },
       {
-        path: 'home',
-        title: 'Home',
-        loadComponent: () => import('./views/home/home.component').then((c) => c.HomeComponent),
+        path: 'kanban-board',
+        title: 'Kanban board',
+        loadComponent: () => import('./views/kanban-board/kanban-board.component').then((c) => c.KanbanBoardComponent),
+      },
+      {
+        path: 'settings',
+        title: 'Settings',
+        loadComponent: () => import('./views/settings/settings.component').then((c) => c.SettingsComponent),
       },
     ],
   },

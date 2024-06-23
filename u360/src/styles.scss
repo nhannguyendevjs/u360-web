@@ -24,17 +24,22 @@
 // Mixins
 @import './styles/mixins/loading';
 
+// Elements
+@import './styles/elements/dialog';
+
 // Components
 @import './styles/components/nav-bar';
 @import './styles/components/nav-list';
-@import './styles/components/dialog';
 
 // Views
 @import './styles/views/shell';
-@import './styles/views/not-found';
 @import './styles/views/sign-in';
+@import './styles/views/not-found';
+@import './styles/views/home';
 @import './styles/views/dashboard';
 @import './styles/views/users';
+@import './styles/views/kanban-board';
+@import './styles/views/settings';
 
 // App
 @import './styles/app';

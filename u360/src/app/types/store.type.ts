@@ -1,7 +1,5 @@
-import * as UsersType from './users.type';
+import * as UserTypes from './users.type';
 
-type AppStore = {
-  user: UsersType.User;
+export type AppStore = {
+  user: UserTypes.User;
 };
-
-export { AppStore };

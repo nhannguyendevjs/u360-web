@@ -1,5 +1,5 @@
 import { HttpHandlerFn, HttpRequest } from '@angular/common/http';
-import { LocalStorageKeys } from '../enums/local-storage';
+import { LocalStorageKeys } from '../enums/local-storage.enum';
 
 export function AuthorizationInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn) {
   const clonedRequest = req.clone({
