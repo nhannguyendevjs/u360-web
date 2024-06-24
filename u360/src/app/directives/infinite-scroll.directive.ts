@@ -17,7 +17,7 @@ export class InfiniteScrollDirective {
   @HostListener('scroll', ['$event'])
   onScroll(event: Event) {
     const element = event.target as HTMLElement;
-    const atBottom = element.scrollHeight - element.scrollTop <= element.clientHeight + this.scrollThreshold;
+    const atBottom = element.scrollHeight - Math.ceil(element.scrollTop) <= element.clientHeight + this.scrollThreshold;
 
     if (atBottom) {
       this.scrolled.emit();
