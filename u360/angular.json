@@ -8,7 +8,8 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
-          "skipTests": true
+          "skipTests": true,
+          "changeDetection": "OnPush"
         },
         "@schematics/angular:class": {
           "skipTests": true
@@ -51,14 +52,9 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": [],
-            "allowedCommonJsDependencies": [
-              "lodash",
-              "luxon"
-            ],
+            "allowedCommonJsDependencies": ["lodash", "luxon"],
             "webWorkerTsConfig": "tsconfig.worker.json"
           },
           "configurations": {
@@ -119,9 +115,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "scripts": [],
             "webWorkerTsConfig": "tsconfig.worker.json"
           }

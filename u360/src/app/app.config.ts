@@ -16,6 +16,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
     provideExperimentalZonelessChangeDetection(),
+    // provideZoneChangeDetection({ eventCoalescing: true }),
     provideHttpClient(withInterceptors([AuthorizationInterceptor, AuthInterceptor])),
     provideRouter(routes, withComponentInputBinding(), withViewTransitions()),
     provideServiceWorker('ngsw-worker.js', {
