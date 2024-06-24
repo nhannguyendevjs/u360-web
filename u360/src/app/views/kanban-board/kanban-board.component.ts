@@ -94,10 +94,10 @@ export class KanbanBoardComponent {
 
   drop(event: CdkDragDrop<any>) {
     if (event.previousContainer.id === event.container.id) {
-      moveItemInArray(event.container.data(), event.previousIndex, event.currentIndex);
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     }
     if (event.previousContainer.id !== event.container.id) {
-      transferArrayItem(event.previousContainer.data(), event.container.data(), event.previousIndex, event.currentIndex);
+      transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
     }
   }
 }

@@ -31,7 +31,7 @@
         </section>
       }
       <!-- Column > Tasks -->
-      <section class="h-full overflow-auto flex flex-col gap-4 p-2" cdkDropList [cdkDropListData]="column.tasks" (cdkDropListDropped)="drop($event)">
+      <section class="h-full overflow-auto flex flex-col gap-4 p-2" cdkDropList [cdkDropListData]="column.tasks()" (cdkDropListDropped)="drop($event)">
         @for (task of column.tasks(); track task._id) {
           <mat-card @fadeIn cdkDrag>
             <!-- Task > Toolbar -->
