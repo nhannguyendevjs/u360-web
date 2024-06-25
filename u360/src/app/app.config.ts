@@ -8,16 +8,17 @@ import { provideTransloco } from '@jsverse/transloco';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { routes } from './app.routes';
 import { environment } from './environments/environment';
-import { AuthInterceptor } from './interceptors/auth.interceptor';
-import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
+import { authInterceptor } from './interceptors/auth.interceptor';
+import { authorizationInterceptor } from './interceptors/authorization.interceptor';
 import { TranslocoHttpLoader } from './transloco-loader';
+import { httpCacheInterceptor } from './interceptors/http-cache.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
     provideExperimentalZonelessChangeDetection(),
     // provideZoneChangeDetection({ eventCoalescing: true }),
-    provideHttpClient(withInterceptors([AuthorizationInterceptor, AuthInterceptor])),
+    provideHttpClient(withInterceptors([httpCacheInterceptor, authorizationInterceptor, authInterceptor])),
     provideRouter(routes, withComponentInputBinding(), withViewTransitions()),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
