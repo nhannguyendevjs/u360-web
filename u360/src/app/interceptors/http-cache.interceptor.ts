@@ -1,30 +1,33 @@
+import { HttpEvent, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { HttpEvent, HttpRequest, HttpInterceptorFn } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { finalize, shareReplay } from 'rxjs/operators';
 
-export const httpCacheInterceptor: HttpInterceptorFn = (req, next) => {
+export const httpCacheInterceptor: HttpInterceptorFn = (request, next) => {
   const cache = inject(HttpRequestCache);
 
+  // exclude some URLs from caching
+  const excludedUrls = [];
+
   // processing only GET requests
-  if (req.method !== 'GET') {
-    return next(req);
+  if (request.method !== 'GET' && !excludedUrls.includes(request.url)) {
+    return next(request);
   }
 
   // if the request is not cached yet
-  if (!cache.has(req)) {
+  if (!cache.has(request)) {
     // we should create a new request
-    const response = next(req).pipe(
+    const response = next(request).pipe(
       // when the request is completed we should clean cache
-      finalize(() => cache.delete(req)),
+      finalize(() => cache.delete(request)),
       // and don't forget to share the Observable between subscribers
       shareReplay({ refCount: true, bufferSize: 1 })
     );
     // after that we put the request into the cache
-    cache.set(req, response);
+    cache.set(request, response);
   }
 
-  return cache.get(req);
+  return cache.get(request);
 };
 
 @Injectable({ providedIn: 'root' })
