@@ -1,4 +1,4 @@
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
 
 const USERS_SERVICE_URL = environment.usersServiceUrl + '/api/' + environment.usersServiceVersion;
 

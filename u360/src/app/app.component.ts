@@ -7,7 +7,7 @@ import hotkeys from 'hotkeys-js';
 import { timer } from 'rxjs';
 import { HotkeysDialogComponent } from './components/hotkeys-dialog/hotkeys-dialog.component';
 import { LocalStorageKeys } from './enums/local-storage.enum';
-import { environment } from './environments/environment';
+import { environment } from '../environments/environment';
 import { AppStoreService } from './services/app-store.service';
 import { AuthService } from './services/auth.service';
 

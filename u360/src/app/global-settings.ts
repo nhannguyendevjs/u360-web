@@ -1,7 +1,8 @@
-import { environment } from './environments/environment';
+import { environment } from '../environments/environment';
 
 export const GlobalSettings = {
   production: environment.production,
+  logLevel: environment.logLevel,
   version: environment.version,
   usersServiceUrl: environment.usersServiceUrl,
   usersServiceVersion: environment.usersServiceVersion,

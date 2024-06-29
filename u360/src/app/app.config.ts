@@ -6,12 +6,12 @@ import { provideRouter, withComponentInputBinding, withViewTransitions } from '@
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideTransloco } from '@jsverse/transloco';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { environment } from '../environments/environment';
 import { routes } from './app.routes';
-import { environment } from './environments/environment';
 import { authInterceptor } from './interceptors/auth.interceptor';
 import { authorizationInterceptor } from './interceptors/authorization.interceptor';
-import { TranslocoHttpLoader } from './transloco-loader';
 import { httpCacheInterceptor } from './interceptors/http-cache.interceptor';
+import { TranslocoHttpLoader } from './transloco-loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
