@@ -1,0 +1,27 @@
+<h2 mat-dialog-title class="!font-semibold">{{ title !== '' ? title : 'New task' }}</h2>
+
+<mat-dialog-content>
+  <section class="flex flex-col gap-0">
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input matInput [(ngModel)]="title"/>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Assign to</mat-label>
+      <mat-select>
+        <mat-option value="hoainhaannguyen@gmail.com">Nhan Nguyen</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput rows="5" [(ngModel)]="description"></textarea>
+    </mat-form-field>
+  </section>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="addTask()">Save</button>
+</mat-dialog-actions>

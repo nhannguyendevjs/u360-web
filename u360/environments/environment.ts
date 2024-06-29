@@ -1,4 +1,4 @@
-import { LOG_LEVEL } from '../utils/log/log.service';
+import { LOG_LEVEL } from '../src/app/utils/log/log.service';
 
 export const environment = {
   production: false,

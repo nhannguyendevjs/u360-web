@@ -27,22 +27,6 @@ export class Column {
     this.name = name;
     this.tasks = tasks;
   }
-
-  addTask(task: Task) {
-    this.tasks.update((value) => {
-      value.unshift(task);
-      return value;
-    });
-    return this.tasks();
-  }
-
-  removeTask(taskId: string) {
-    this.tasks.update((value) => {
-      value = value.filter((task) => task._id !== taskId);
-      return value;
-    });
-    return this.tasks();
-  }
 }
 
 export class KanbanBoard {
@@ -52,5 +36,58 @@ export class KanbanBoard {
   constructor(title: string, columns: WritableSignal<Column[]>) {
     this.title = title;
     this.columns = columns;
+  }
+
+  clearAll() {
+    this.columns().forEach((column) => {
+      column.tasks.set([]);
+    });
+  }
+
+  clearColumn(columnName: string) {
+    const column = this.columns().find((column) => column.name === columnName);
+    if (column) {
+      column.tasks.set([]);
+    }
+  }
+
+  addTask(task: Task, columnName: string) {
+    const column = this.columns().find((column) => column.name === columnName);
+    if (column) {
+      column.tasks.update((value) => {
+        value.unshift(task);
+        return value;
+      });
+    }
+    return column.tasks();
+  }
+
+  moveTask(taskId: string, columnName: string) {
+    const destinationColumn = this.columns().find((column) => column.name === columnName);
+    const sourceColumn = this.columns().find((column) => column.tasks().find((item) => item._id === taskId));
+    if (destinationColumn) {
+      destinationColumn.tasks.update((value) => {
+        value.unshift(sourceColumn.tasks().find((item) => item._id === taskId));
+        return value;
+      });
+    }
+    if (sourceColumn) {
+      sourceColumn.tasks.update((value) => {
+        value = value.filter((item) => item._id !== taskId);
+        return value;
+      });
+    }
+    return destinationColumn.tasks();
+  }
+
+  deleteTask(taskId: string, columnName: string) {
+    const column = this.columns().find((column) => column.name === columnName);
+    if (column) {
+      column.tasks.update((value) => {
+        value = value.filter((item) => item._id !== taskId);
+        return value;
+      });
+    }
+    return column.tasks();
   }
 }
